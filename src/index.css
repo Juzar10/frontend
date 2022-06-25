@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.profile-name{
+    vertical-align: text-top !important;
+}
