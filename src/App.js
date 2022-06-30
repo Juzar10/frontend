@@ -1,11 +1,17 @@
-import './App.css';
-import NewComp from './newComp';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DashBoard from "./pages/dashboard";
+import * as ROUTES from "./constant/routes";
+import Navbar from "./components/navbar";
 
 export default function App() {
   return (
-    
-      <NewComp />
-
-
-  )
+    <>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path={ROUTES.DASHBOARD} element={<DashBoard />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
