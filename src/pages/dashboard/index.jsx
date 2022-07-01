@@ -2,6 +2,9 @@ import React from "react";
 import "./style/index.css";
 import hogwartsImage from "../../assets/images/release_1_hogwarts.png";
 import witcherImage from "../../assets/images/1244644.jpeg";
+import narniaImage from "../../assets/images/narnia.jpg";
+import ringImage from "../../assets/images/lord.webp";
+import dorian from "../../assets/images/Dorian Gray.jpg";
 
 function DashBoard() {
   return (
@@ -65,19 +68,39 @@ function DashBoard() {
               <img
                 src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546910265l/2.jpg"
                 alt="haryy potter"
-                srcset=""
               />
             </div>
           </div>
         </div>
       </div>
       <div className="wrapper">
-        <div className="relative news-item hero-item">
+        <div className="relative news-item hero-item divcontainer">
           <img
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/divinity-ori-sin.jpg"
+            src={ringImage}
             alt=""
-            className="absolute w-full "
+            className="absolute w-full h-full backgroundImage"
           />
+          <div className="absolute flex justify-center w-full h-full opacity-0 middle">
+            <div className="w-2/3 mt-32">
+              <div className="h-full ">
+                <p className="font-bold text-purple text-grab">
+                  The Felloship of Rings
+                </p>
+                <div className="flex font-semibold text-purple text-para">
+                  <p className="mr-8"> author name</p>
+                  <p>genre</p>
+                </div>
+                <div id="button box" className="mt-8">
+                  <button className="w-48 h-20 rounded-sm bg-purple text-offwhite text-para ">
+                    Add to Cart
+                  </button>
+                  <button className="w-48 h-20 ml-6 border rounded-sm text-purple border-purple text-para">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="relative news-item standard-item divcontainer">
           <img
@@ -85,14 +108,80 @@ function DashBoard() {
             alt=""
             className="absolute w-full max-h-full backgroundImage"
           />
-          <div className="absolute flex items-center justify-center w-full h-full opacity-0 middle">
-            <div>Withcher and CIri</div>
+          <div className="absolute flex justify-center w-full h-full opacity-0 middle">
+            <div className="w-2/3 mt-32">
+              <div className="h-full ">
+                <p className="font-bold text-purple text-grab">The Last Wish</p>
+                <div className="flex font-semibold text-purple text-para">
+                  <p className="mr-8"> author name</p>
+                  <p>genre</p>
+                </div>
+                <div id="button box" className="mt-8">
+                  <button className="w-48 h-20 rounded-sm bg-purple text-offwhite text-para ">
+                    Add to Cart
+                  </button>
+                  <button className="w-48 h-20 ml-6 border rounded-sm text-purple border-purple text-para">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="news-item standard-item"></div>
-        <div className="news-item standard-item"></div>
-        <div className="news-item standard-item"></div>
-        <div className="news-item standard-item"></div>
+        <div className="relative news-item standard-item divcontainer">
+          <img
+            src={dorian}
+            alt=""
+            className="absolute w-full h-full backgroundImage"
+          />
+          <div className="absolute flex justify-center w-full h-full opacity-0 middle">
+            <div className="w-2/3 mt-32">
+              <div className="h-full ">
+                <p className="font-bold text-purple text-grab">Dorian Gray</p>
+                <div className="flex font-semibold text-purple text-para">
+                  <p className="mr-8"> author name</p>
+                  <p>genre</p>
+                </div>
+                <div id="button box" className="mt-8">
+                  <button className="w-48 h-20 rounded-sm bg-purple text-offwhite text-para ">
+                    Add to Cart
+                  </button>
+                  <button className="w-48 h-20 ml-6 border rounded-sm text-purple border-purple text-para">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="relative news-item standard-item divcontainer">
+          <img
+            src={narniaImage}
+            alt=""
+            className="absolute w-full h-full backgroundImage"
+          />
+          <div className="absolute flex justify-center w-full h-full opacity-0 middle">
+            <div className="w-2/3 mt-32">
+              <div className="h-full ">
+                <p className="font-bold text-purple text-grab">
+                  The Cronicals of Narnia
+                </p>
+                <div className="flex font-semibold text-purple text-para">
+                  <p className="mr-8"> author name</p>
+                  <p>genre</p>
+                </div>
+                <div id="button box" className="mt-8">
+                  <button className="w-48 h-20 rounded-sm bg-purple text-offwhite text-para ">
+                    Add to Cart
+                  </button>
+                  <button className="w-48 h-20 ml-6 border rounded-sm text-purple border-purple text-para">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

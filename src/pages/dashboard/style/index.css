@@ -4,7 +4,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   max-width: 1440px;
-  font-size: 0;
+  /* font-size: 0; */
 }
 
 .hero-item,
@@ -28,13 +28,13 @@
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/re7-chris-large.jpg");
 } */
 
-.standard-item:nth-child(3) {
+/* .standard-item:nth-child(3) {
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/bioshock-large.jpg");
-}
+} */
 
-.standard-item:nth-child(4) {
+/* .standard-item:nth-child(4) {
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/dishonored-large.jpg");
-}
+} */
 
 @supports (display: grid) {
   .news-item {
@@ -88,6 +88,7 @@
   -ms-transition: 300ms -ms-filter linear;
   -o-transition: 300ms -o-filter linear; */
 }
+
 .middle {
   transition-delay: 0.2s;
   transition-duration: 0.3s;

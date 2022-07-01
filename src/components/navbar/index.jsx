@@ -1,8 +1,8 @@
 import React from "react";
-import { ReactComponent as IconSearch } from "../assets/searchIcon.svg";
-import { ReactComponent as IconCart } from "../assets/cartIcon.svg";
-import { ReactComponent as Temp } from "../assets/temp.svg";
-import { ReactComponent as IconDownArrow } from "../assets/downArrow.svg";
+import { ReactComponent as IconCart } from "../../assets/cartIcon.svg";
+import { ReactComponent as Temp } from "../../assets/temp.svg";
+import { ReactComponent as IconDownArrow } from "../../assets/downArrow.svg";
+import SearchBar from "./subcomponent/searchbar";
 
 export default function Navbar() {
   return (
@@ -10,20 +10,7 @@ export default function Navbar() {
       {/* logo div */}
       <div className="w-3/12 h-full "></div>
       {/* searchbar div */}
-      <div className="flex items-center w-6/12 h-full ">
-        <div className="relative flex items-center w-full h-12 bg-gray-200 rounded-lg">
-          <input
-            className="w-full pl-40 bg-gray-200 outline-none text-lightpurple"
-            placeholder="Search here"
-          />
-          <select className="absolute left-0 ml-2 font-bold bg-gray-200 border-none outline-none text-purple">
-            <option value="Menus">Menus</option>
-            <option value="Option 2">Option 2</option>
-            <option value="Option 3">Option 3</option>
-          </select>
-          <IconSearch className="w-6 h-6 mr-6 stroke-lightpurple" />
-        </div>
-      </div>
+      <SearchBar />
       {/* profile and cart div */}
       <div className="flex items-center w-3/12 h-full ">
         {" "}
