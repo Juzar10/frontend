@@ -8,6 +8,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useGetBookDetailQuery } from "../../reduxStore/api-slice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../reduxStore/cart-slice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,15 +45,39 @@ function a11yProps(index) {
 }
 
 function ProductDetails() {
+  const [quantity, setQuantity] = React.useState(1);
   const [value, setValue] = React.useState(0);
+
+  const increament = () => {
+    setQuantity((prev) => prev + 1);
+  };
+  const decrement = () => {
+    if (quantity === 1) {
+      return;
+    }
+    setQuantity((prev) => prev - 1);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const dispath = useDispatch();
+
   const location = useLocation();
 
   const { data } = useGetBookDetailQuery(location.state.id);
+
+  const addToCartHandler = () => {
+    const cartItem = {
+      title: data.data.title,
+      coverImg: data.data.coverImg,
+      price: data.data.price,
+      quantity: quantity,
+      author: data.data.author,
+    };
+    dispath(addToCart(cartItem));
+  };
 
   return (
     <>
@@ -134,16 +160,25 @@ function ProductDetails() {
                 <div className="col-span-6 col-start-6">
                   <div className="flex justify-between">
                     <div>
-                      <button className="add-btn">+</button>
+                      <button className="add-btn" onClick={increament}>
+                        +
+                      </button>
                     </div>
                     <div>
-                      <div className="price">0</div>
+                      <div className="price">{quantity}</div>
                     </div>
                     <div>
-                      <button className="minus-btn">-</button>
+                      <button className="minus-btn" onClick={decrement}>
+                        -
+                      </button>
                     </div>
                     <div>
-                      <button className="add-to-cart-btn">Add to Cart</button>
+                      <button
+                        className="add-to-cart-btn"
+                        onClick={addToCartHandler}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
                   </div>
                 </div>
