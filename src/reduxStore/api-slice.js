@@ -21,9 +21,19 @@ export const apiSlice = createApi({
             query: (searchTerm) => ({
                 url: `books?search=${searchTerm}`
             })
+        }),
+        loadDashBoardData: builder.query({
+            query: (itemsList) => ({
+                url: "books/multiplebooks",
+                method: "POST",
+                body: {
+                    itemsList: itemsList
+                }
+
+            })
         })
 
     })
 })
 
-export const { useGetAutoCompleteSuggestionQuery, useGetBookDetailQuery, useGetSearchResultQuery } = apiSlice
+export const { useGetAutoCompleteSuggestionQuery, useGetBookDetailQuery, useGetSearchResultQuery, useLoadDashBoardDataQuery } = apiSlice

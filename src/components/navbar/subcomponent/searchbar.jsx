@@ -88,8 +88,8 @@ export default function SearchBar() {
             <IconSearch className="w-6 h-6 mr-6 stroke-lightpurple" />
           </div>
           {!(suggestionList.length === 0) && (
-            <div className="absolute z-10 w-1/2 pl-40">
-              <div className="bg-offwhite py-3.5 rounded-md">
+            <div className="absolute z-10 w-1/2 pl-40 transition-all ease-in-out">
+              <div className="bg-offwhite py-3.5 rounded-md ">
                 {suggestionList.map((items, index) => {
                   let isActive = false;
                   if (index === activeSuggestionIndex) {

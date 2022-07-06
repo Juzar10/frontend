@@ -13,8 +13,6 @@ function SearchResult() {
 
   if (data) {
     arrayofData = data.data[0].data;
-
-    console.log(arrayofData);
   }
 
   return (
