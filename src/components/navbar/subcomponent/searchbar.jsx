@@ -9,20 +9,25 @@ export default function SearchBar() {
   const [searchquery, setSearchquery] = useState("");
   const [suggestionList, setSuggestionList] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const [skip, setSkip] = useState(true);
 
   const navigate = useNavigate();
 
-  const { data } = useGetAutoCompleteSuggestionQuery(searchquery);
+  const { data } = useGetAutoCompleteSuggestionQuery(searchquery, {
+    skip: skip,
+  });
 
   const HandleAutoComplete = (e) => {
+    setSkip(false);
     setSearchquery(e.target.value);
-    if (e.target.value.length === 0) {
-      setSuggestionList([]);
-      return;
-    } else {
-      setSuggestionList(data.data);
+    if (data) {
+      if (e.target.value.length === 0) {
+        setSuggestionList([]);
+        return;
+      } else {
+        setSuggestionList(data.data);
+      }
     }
-
     // axios
     //   .get(`${BASE_URI}books/autocomplete`, {
     //     params: { search: e.target.value },
@@ -82,8 +87,8 @@ export default function SearchBar() {
             {/* </form> */}
             <select className="absolute left-0 ml-2 font-bold bg-gray-200 border-none outline-none text-purple">
               <option value="Menus">Menus</option>
-              <option value="Option 2">Option 2</option>
-              <option value="Option 3">Option 3</option>
+              <option value="Option 2">Romance</option>
+              <option value="Option 3">Adventure</option>
             </select>
             <IconSearch className="w-6 h-6 mr-6 stroke-lightpurple" />
           </div>

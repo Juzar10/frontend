@@ -13,7 +13,9 @@ function Cart() {
           <div className="w-3/4 px-10 py-10 bg-white">
             <div className="flex justify-between pb-8 border-b">
               <h1 className="text-2xl font-semibold">Shopping Cart</h1>
-              <h2 className="text-2xl font-semibold">3 Items</h2>
+              <h2 className="text-2xl font-semibold">
+                {cartItems.totalItems} Items
+              </h2>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="w-2/5 text-xs font-semibold text-gray-600 uppercase">
@@ -31,6 +33,8 @@ function Cart() {
             </div>
             {cartItems.items.map((item) => (
               <CartItemCart
+                key={item.id}
+                id={item.id}
                 title={item.title}
                 coverImg={item.coverImg}
                 price={item.price}
@@ -57,8 +61,12 @@ function Cart() {
               Order Summary
             </h1>
             <div className="flex justify-between mt-10 mb-5">
-              <span className="text-sm font-semibold uppercase">Items 3</span>
-              <span className="text-sm font-semibold">590$</span>
+              <span className="text-sm font-semibold uppercase">
+                Items {cartItems.totalItems}
+              </span>
+              <span className="text-sm font-semibold">
+                ${cartItems.totalCost}
+              </span>
             </div>
             <div>
               <label className="inline-block mb-3 text-sm font-medium uppercase">
@@ -88,7 +96,7 @@ function Cart() {
             <div className="mt-8 border-t">
               <div className="flex justify-between py-6 text-sm font-semibold uppercase">
                 <span>Total cost</span>
-                <span>$600</span>
+                <span>${cartItems.totalCost}</span>
               </div>
               <button className="w-full py-3 text-sm font-semibold text-white uppercase bg-indigo-500 hover:bg-indigo-600">
                 Checkout

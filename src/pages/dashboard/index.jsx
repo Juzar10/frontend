@@ -29,6 +29,8 @@ function DashBoard() {
   const onCartAddHandler = (e) => {
     setOpen(true);
     const cartItem = {
+      key: listOfData[e.target.id]._id,
+      id: listOfData[e.target.id]._id,
       title: listOfData[e.target.id].title,
       coverImg: listOfData[e.target.id].coverImg,
       price: listOfData[e.target.id].price,
@@ -40,7 +42,6 @@ function DashBoard() {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(listOfData);
   return (
     <>
       {listOfData.length !== 0 && (

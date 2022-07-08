@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ReactComponent as IconLighting } from "../../assets/lightningIcon.svg";
 import { ReactComponent as IconSecurity } from "../../assets/securityIcon.svg";
@@ -5,11 +6,9 @@ import { ReactComponent as IconCart } from "../../assets/cartIcon.svg";
 import { ReactComponent as IconReview } from "../../assets/reviewIcon.svg";
 
 import "./style/index.css";
-import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useGetBookDetailQuery } from "../../reduxStore/api-slice";
 import { useDispatch } from "react-redux";
@@ -29,7 +28,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -50,10 +49,9 @@ function a11yProps(index) {
 }
 
 function ProductDetails() {
-  const [quantity, setQuantity] = React.useState(1);
-  const [value, setValue] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
-
+  const [quantity, setQuantity] = useState(1);
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
   const increament = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -76,7 +74,10 @@ function ProductDetails() {
 
   const addToCartHandler = () => {
     setOpen(true);
+
     const cartItem = {
+      key: data.data._id,
+      id: data.data._id,
       title: data.data.title,
       coverImg: data.data.coverImg,
       price: data.data.price,
@@ -191,22 +192,22 @@ function ProductDetails() {
                 </div>
                 <div className="col-span-6 col-start-6">
                   <div className="flex justify-end">
-                    <div class="custom-number-input h-14 w-48">
-                      <div class="flex flex-row h-14 w-full rounded-lg relative bg-transparent   mt-1">
-                        <button class=" bg-offwhite   border-[0.5px] border-r-0 border-lightpurple  h-full w-20 rounded-l cursor-pointer outline-none">
+                    <div className="w-48 custom-number-input h-14">
+                      <div className="relative flex flex-row w-full mt-1 bg-transparent rounded-lg h-14">
+                        <button className=" bg-offwhite   border-[0.5px] border-r-0 border-lightpurple  h-full w-20 rounded-l cursor-pointer outline-none">
                           <span
-                            class="m-auto text-4xl text-orange font-bold"
+                            className="m-auto text-4xl font-bold text-orange"
                             onClick={decrement}
                           >
                             −
                           </span>
                         </button>
-                        <span class=" focus:outline-none px-4 text-center text-purple bg-offwhite font-semibold text-md border-[0.5px] border-lightpurple border-r-0 border-l-0  focus:text-black  md:text-basecursor-default flex items-center   outline-none">
+                        <span className=" focus:outline-none px-4 text-center text-purple bg-offwhite font-semibold text-md border-[0.5px] border-lightpurple border-r-0 border-l-0  focus:text-black  md:text-basecursor-default flex items-center   outline-none">
                           {quantity}
                         </span>
-                        <button class="bg-offwhite  border-[0.5px] border-lightpurple border-l-0 h-full w-20 rounded-r cursor-pointer">
+                        <button className="bg-offwhite  border-[0.5px] border-lightpurple border-l-0 h-full w-20 rounded-r cursor-pointer">
                           <span
-                            class="m-auto text-4xl font-bold text-orange"
+                            className="m-auto text-4xl font-bold text-orange"
                             onClick={increament}
                           >
                             +
@@ -246,7 +247,7 @@ function ProductDetails() {
               <Box sx={{ width: "100%" }}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <Tabs value={value} onChange={handleChange} aria-label="">
-                    <Tab label="Details Product" {...a11yProps(0)} />
+                    <Tab label="Product Details" {...a11yProps(0)} />
                     <Tab label="Customer Reviews" {...a11yProps(1)} />
                   </Tabs>
                 </Box>
@@ -264,11 +265,11 @@ function ProductDetails() {
                       <p className="w-1/3 font-bold text-para text-purple">
                         authors
                       </p>
-                      <p className="w-2/3 text-para text-lightpurple">
+                      <div className="w-2/3 text-para text-lightpurple">
                         {data.data.author.map((item) => (
-                          <p>{item}</p>
+                          <p key={item}>{item}</p>
                         ))}
-                      </p>
+                      </div>
                     </div>
                     <div className="flex w-full px-2 py-4 border-b border-b-lightpurple">
                       <p className="w-1/3 font-bold text-para text-purple">
@@ -298,21 +299,21 @@ function ProductDetails() {
                       <p className="w-1/3 font-bold text-para text-purple">
                         Genres
                       </p>
-                      <p className="w-2/3 text-para text-lightpurple">
+                      <div className="w-2/3 text-para text-lightpurple">
                         {data.data.genres.map((item) => (
-                          <p>{item}</p>
+                          <p key={item}>{item}</p>
                         ))}
-                      </p>
+                      </div>
                     </div>
                     <div className="flex w-full px-2 py-4 border-b border-b-lightpurple">
                       <p className="w-1/3 font-bold text-para text-purple">
                         Characters
                       </p>
-                      <p className="w-2/3 text-para text-lightpurple">
+                      <div className="w-2/3 text-para text-lightpurple">
                         {data.data.characters.map((item) => (
-                          <p>{item}</p>
+                          <p key={item}>{item}</p>
                         ))}
-                      </p>
+                      </div>
                     </div>
                     <div className="flex w-full px-2 py-4 border-b border-b-lightpurple">
                       <p className="w-1/3 font-bold text-para text-purple">
@@ -342,26 +343,26 @@ function ProductDetails() {
                       <p className="w-1/3 font-bold text-para text-purple">
                         awards
                       </p>
-                      <p className="w-2/3 text-para text-lightpurple">
+                      <div className="w-2/3 text-para text-lightpurple">
                         {data.data.awards.map((item) => (
-                          <p>{item}</p>
+                          <p key={item}>{item}</p>
                         ))}
-                      </p>
+                      </div>
                     </div>
                     <div className="flex w-full px-2 py-4 border-b border-b-lightpurple">
                       <p className="w-1/3 font-bold text-para text-purple">
                         settings
                       </p>
-                      <p className="w-2/3 text-para text-lightpurple">
+                      <div className="w-2/3 text-para text-lightpurple">
                         {data.data.setting.map((item) => (
-                          <p>{item}</p>
+                          <p key={item}>{item}</p>
                         ))}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  Item Two
+                  There are no Customer Reviews yet
                 </TabPanel>
               </Box>
             </div>
