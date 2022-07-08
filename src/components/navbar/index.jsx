@@ -48,7 +48,7 @@ export default function Navbar() {
           <div className="flex items-center px-6 py-4 ml-16 border rounded-md hover:bg-yellow-600 bg-orange">
             <Link to="/login">
               <p className="font-bold text-offwhite text-menu">
-                SignIn / Login
+                SignUp / Login
               </p>
             </Link>
           </div>

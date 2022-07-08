@@ -31,7 +31,7 @@ function Signin() {
         <div>
           <img className="w-auto h-40 mx-auto" src={Logo} alt="Workflow" />
           <h2 className="mt-2 font-bold text-center text-secondary text-purple">
-            Sign in to your account
+            Create your Account
           </h2>
         </div>
         <form className="mt-4 space-y-6" onSubmit={submitHandler} method="POST">
@@ -87,7 +87,7 @@ function Signin() {
               <p className="mr-2 text-menu text-lightpurple">
                 Already have an account?
               </p>
-              <Link to="/signin">
+              <Link to="/login">
                 <p className="font-bold text-orange">Log in </p>
               </Link>
             </div>
@@ -113,7 +113,7 @@ function Signin() {
                   />
                 </svg>
               </span>
-              SIGN IN
+              SIGN UP
             </button>
           </div>
         </form>
