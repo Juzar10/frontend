@@ -11,7 +11,8 @@ const cartSlice = createSlice({
         addToCart: (state, action) => {
             state.items.push(action.payload)
             state.totalItems += 1
-            state.totalCost += Math.round(action.payload.price * action.payload.quantity * 100) / 100
+            state.totalCost += action.payload.price * action.payload.quantity
+            state.totalCost = Math.round(state.totalCost * 100) / 100
         },
         removeFromCart: (state, action) => {
             let id = action.payload;
