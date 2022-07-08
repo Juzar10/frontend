@@ -107,7 +107,9 @@ function Cart() {
         amount={cartItems.totalCost+10}
         // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
         onSuccess={(details, data) => {
-          alert("Transaction completed by " + details.payer.name.given_name);}}/>
+          alert("Transaction completed by " + details.payer.name.given_name);}}
+          onError={(error) => {
+            console.log(error);}}/>
             </div>
           </div>
         </div>
