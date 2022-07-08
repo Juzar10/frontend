@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import * as ROUTES from "../../constant/routes";
 import { addToCart } from "../../reduxStore/cart-slice";
 import { Alert, Snackbar } from "@mui/material";
+import Footer from "../../components/footer";
 
 function DashBoard() {
   const [open, setOpen] = useState(false);
@@ -275,6 +276,7 @@ function DashBoard() {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
       )}
     </>
