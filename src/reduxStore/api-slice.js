@@ -18,12 +18,10 @@ export const apiSlice = createApi({
             })
         }),
         getSearchResult: builder.query({
-            query: (params) => {
+            query: (params) => ({
+                url: `books?search=${params.searchTerm}&page=${params.pageNumber}`
+            })
 
-                return ({
-                    url: `books?search=${params.searchTerm}&page=${params.pageNumber}`
-                })
-            }
         }),
         loadDashBoardData: builder.query({
             query: (itemsList) => ({
@@ -34,9 +32,14 @@ export const apiSlice = createApi({
                 }
 
             })
+        }),
+        getGenreSelect: builder.query({
+            query: (param) => ({
+                url: `/books/popular/${param.genre}?page=${param.pageNumber}`
+            })
         })
 
     })
 })
 
-export const { useGetAutoCompleteSuggestionQuery, useGetBookDetailQuery, useGetSearchResultQuery, useLoadDashBoardDataQuery } = apiSlice
+export const { useGetAutoCompleteSuggestionQuery, useGetBookDetailQuery, useGetSearchResultQuery, useLoadDashBoardDataQuery, useGetGenreSelectQuery } = apiSlice

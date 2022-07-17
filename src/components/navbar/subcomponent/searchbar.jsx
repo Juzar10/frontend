@@ -4,6 +4,7 @@ import { ReactComponent as IconSearch } from "../../../assets/searchIcon.svg";
 import AutoCompleteItem from "./autoCompleteItem";
 import * as ROUTES from "../../../constant/routes";
 import { useGetAutoCompleteSuggestionQuery } from "../../../reduxStore/api-slice";
+import { genreList } from "../../../constant/general_variable";
 
 export default function SearchBar() {
   const [searchquery, setSearchquery] = useState("");
@@ -16,6 +17,11 @@ export default function SearchBar() {
   const { data } = useGetAutoCompleteSuggestionQuery(searchquery, {
     skip: skip,
   });
+
+  const onGenreSelect = (event, value) => {
+    console.log(event.target.value);
+    navigate(ROUTES.GENRE, { state: { genre: event.target.value } });
+  };
 
   const HandleAutoComplete = (e) => {
     setSkip(false);
@@ -85,10 +91,16 @@ export default function SearchBar() {
               onKeyDown={KeyDownHandler}
             />
             {/* </form> */}
-            <select className="absolute left-0 ml-2 font-bold bg-gray-200 border-none outline-none text-purple">
+            <select
+              className="absolute left-0 w-20 ml-2 font-bold bg-gray-200 border-none outline-none text-purple"
+              onChange={onGenreSelect}
+            >
               <option value="Menus">Menus</option>
-              <option value="Option 2">Romance</option>
-              <option value="Option 3">Adventure</option>
+              {genreList.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
             </select>
             <IconSearch className="w-6 h-6 mr-6 stroke-lightpurple" />
           </div>
