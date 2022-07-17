@@ -4,6 +4,8 @@ import SearchResultCard from "../../components/searchResultCard";
 import { useGetSearchResultQuery } from "../../reduxStore/api-slice";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { LoadinMessages } from "../../constant/funny_loading_messages";
 
 function SearchResult() {
   const location = useLocation();
@@ -27,7 +29,20 @@ function SearchResult() {
 
   return (
     <>
-      {isFetching && <p>Loading</p>}
+      {isFetching && (
+        <div className="flex items-center justify-center w-full h-screen">
+          <div className="text-center ">
+            <CircularProgress />
+            <p className="text-para text-purple">
+              {
+                LoadinMessages[
+                  Math.floor(Math.random() * LoadinMessages.length)
+                ]
+              }
+            </p>
+          </div>
+        </div>
+      )}
       <br />
       {!isFetching && (
         <div className="bg-offwhite">
