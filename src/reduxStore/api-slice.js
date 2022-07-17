@@ -18,9 +18,12 @@ export const apiSlice = createApi({
             })
         }),
         getSearchResult: builder.query({
-            query: (searchTerm) => ({
-                url: `books?search=${searchTerm}`
-            })
+            query: (params) => {
+
+                return ({
+                    url: `books?search=${params.searchTerm}&page=${params.pageNumber}`
+                })
+            }
         }),
         loadDashBoardData: builder.query({
             query: (itemsList) => ({

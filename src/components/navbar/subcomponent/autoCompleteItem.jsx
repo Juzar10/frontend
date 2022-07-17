@@ -15,6 +15,7 @@ export default function AutoCompleteItem({
     setSuggestionList([]);
     navigate(ROUTES.PRODUCTDETAILS, { state: { id: listId } });
   };
+  
   return (
     <div
       className={`flex h-24 pb-2 m-2 border-b-2 hover:bg-blue-100 ${

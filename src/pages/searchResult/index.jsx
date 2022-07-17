@@ -2,16 +2,26 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import SearchResultCard from "../../components/searchResultCard";
 import { useGetSearchResultQuery } from "../../reduxStore/api-slice";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
 
 function SearchResult() {
   const location = useLocation();
+  const [pageNumber, setPageNumber] = useState(1);
   let arrayofData;
+  let count;
 
-  const { data, isFetching } = useGetSearchResultQuery(
-    location.state.searchTerm
-  );
+  const { data, isFetching } = useGetSearchResultQuery({
+    searchTerm: location.state.searchTerm,
+    pageNumber: pageNumber,
+  });
+
+  const onPageNumberChange = (event, value) => {
+    setPageNumber(value);
+  };
 
   if (data) {
+    count = Math.round(data.data[0].metadata[0].total / 25);
     arrayofData = data.data[0].data;
   }
 
@@ -37,6 +47,15 @@ function SearchResult() {
                   price={item.price}
                 />
               ))}
+            </div>
+            <div className="flex items-center justify-center pt-4">
+              <Pagination
+                count={count}
+                variant="outlined"
+                shape="rounded"
+                page={pageNumber}
+                onChange={onPageNumberChange}
+              />
             </div>
           </div>
         </div>
