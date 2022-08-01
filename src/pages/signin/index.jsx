@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../reduxStore/user-slice";
@@ -10,11 +10,13 @@ const axios = require("axios");
 function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
-      name: e.target.name.value,
+      email: e.target.email.value,
       password: e.target.password.value,
+      username: e.target.username.value,
     };
 
     axios
@@ -22,7 +24,8 @@ function Signin() {
       .then(function (response) {
         dispatch(addUser(response.data.user));
         navigate(ROUTES.DASHBOARD);
-      });
+      })
+      .catch((error) => setErrorMessage(error.response.data.message));
   };
 
   return (
@@ -43,12 +46,26 @@ function Signin() {
               </label>
               <input
                 id="email-address"
-                name="name"
+                name="email"
                 type="text"
                 autoComplete="email"
                 required
                 className="relative block w-full px-3 py-2 border border-gray-300 rounded-sm appearance-none text-purple placeholder-lightpurple focus:outline-none focus:ring-lightpurple focus:border-lightpurple focus:z-10 sm:text-sm"
                 placeholder="Email address"
+              />
+            </div>
+            <div className="pb-4 mb-4">
+              <label htmlFor="username" className="sr-only">
+                User Name
+              </label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="off"
+                required
+                className="relative block w-full px-3 py-2 border border-gray-300 rounded-sm appearance-none text-purple placeholder-lightpurple focus:outline-none focus:ring-lightpurple focus:border-lightpurple focus:z-10 sm:text-sm"
+                placeholder="User Name"
               />
             </div>
             <div>
@@ -117,6 +134,7 @@ function Signin() {
             </button>
           </div>
         </form>
+        <div className="text-red-400 ">{errorMessage}</div>
       </div>
     </div>
   );

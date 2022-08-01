@@ -4,12 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../reduxStore/user-slice";
 import * as ROUTES from "../../constant/routes";
 import Logo from "../../assets/images/logo2.jpeg";
+import { useState } from "react";
 
 const axios = require("axios");
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -22,7 +25,8 @@ function Login() {
       .then(function (response) {
         dispatch(addUser(response.data.user));
         navigate(ROUTES.DASHBOARD);
-      });
+      })
+      .catch((error) => setErrorMessage(error.response.data.message));
   };
 
   return (
@@ -117,6 +121,8 @@ function Login() {
             </button>
           </div>
         </form>
+
+        <div className="text-red-400 ">{errorMessage}</div>
       </div>
     </div>
   );

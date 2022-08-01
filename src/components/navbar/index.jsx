@@ -7,11 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeUser } from "../../reduxStore/user-slice";
 import Logo from "../../assets/images/logo2.jpeg";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 export default function Navbar() {
   const cartItems = useSelector((state) => state.cart.totalItems);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const logoutHandler = () => {
     dispatch(removeUser());
   };
@@ -44,7 +55,7 @@ export default function Navbar() {
           </div>
         </Link>
         {/*Profile Svg */}
-        {!user.user.name && (
+        {!user.user.email && (
           <div className="flex items-center px-6 py-4 ml-16 border rounded-md hover:bg-yellow-600 bg-orange">
             <Link to="/login">
               <p className="font-bold text-offwhite text-menu">
@@ -53,24 +64,47 @@ export default function Navbar() {
             </Link>
           </div>
         )}
-        {user.user.name && (
-          <div className="flex items-center ml-8" onClick={logoutHandler}>
-            <Temp />
-            <div className="items-start ml-3">
-              <div className="flex items-center">
-                {/*Profile Name */}
-                <h1 className="font-bold text-menu text-purple">
-                  {user.user.name}
-                </h1>
-                {/*Dropdown for settings and logout. Just svg */}
-                <IconDownArrow className="w-6 h-8 ml-2 stroke-2 stroke-purple" />
+
+        {user.user.email && (
+          <>
+            {" "}
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <div className="flex items-center ml-8">
+                <Temp />
+                <div className="items-start ml-3">
+                  <div className="flex items-center">
+                    {/*Profile Name */}
+                    <h1 className="font-bold text-menu text-purple">
+                      {user.user.username}
+                    </h1>
+                    {/*Dropdown for settings and logout. Just svg */}
+                    <IconDownArrow className="w-6 h-8 ml-2 stroke-2 stroke-purple" />
+                  </div>
+                  {/*user email address */}
+                  <p className="text-tiny text-lightpurple">
+                    {user.user.email}
+                  </p>
+                </div>
               </div>
-              {/*user email address */}
-              <p className="text-tiny text-lightpurple">
-                dhruvkaneriya@rocketmail.com
-              </p>
-            </div>
-          </div>
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+            </Menu>
+          </>
         )}
       </div>
     </nav>
