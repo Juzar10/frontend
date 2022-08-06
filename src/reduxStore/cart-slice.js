@@ -29,10 +29,15 @@ const cartSlice = createSlice({
             }
 
 
+        },
+        emptyCart: (state, action) => {
+            state.items = [];
+            state.totalItems = 0;
+            state.totalCost = 0;
         }
     }
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, removeFromCart, emptyCart } = cartSlice.actions
 
 export default cartSlice

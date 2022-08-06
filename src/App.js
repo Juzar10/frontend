@@ -8,6 +8,7 @@ import Signin from "./pages/signin";
 import Login from "./pages/login";
 import Cart from "./pages/cart";
 import GenereSelect from "./pages/genreSelect";
+import OrderConfirmation from "./pages/orderConfirmation"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadDashBoard } from "./reduxStore/dashboard-slice";
@@ -40,6 +41,7 @@ export default function App() {
         <Route path={ROUTES.PRODUCTDETAILS} element={<ProductDetails />} />
         <Route path={ROUTES.SEARCH} element={<SearchResult />} />
         <Route path={ROUTES.GENRE} element={<GenereSelect />} />
+        <Route path={ROUTES.ORDERCONFIRM} element={<OrderConfirmation />} />
       </Routes>
     </>
   );

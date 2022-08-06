@@ -1,12 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import CartItemCart from "../../components/cartCard";
 import { PayPalButton } from "react-paypal-button-v2";
-
+import * as ROUTES from "../../constant/routes";
+import { emptyCart } from "../../reduxStore/cart-slice";
 
 function Cart() {
   const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-gray-100">
@@ -98,18 +102,25 @@ function Cart() {
             <div className="mt-8 border-t">
               <div className="flex justify-between py-6 text-sm font-semibold uppercase">
                 <span>Total cost</span>
-                <span>${cartItems.totalCost+10}</span>
+                <span>${cartItems.totalCost + 10}</span>
               </div>
               {/* <button className="w-full py-3 text-sm font-semibold text-white uppercase bg-indigo-500 hover:bg-indigo-600">
                 Checkout
               </button> */}
               <PayPalButton
-        amount={cartItems.totalCost+10}
-        // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-        onSuccess={(details, data) => {
-          alert("Transaction completed by " + details.payer.name.given_name);}}
-          onError={(error) => {
-            console.log(error);}}/>
+                amount={cartItems.totalCost + 10}
+                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                onSuccess={(details, data) => {
+                  // alert(
+                  //   "Transaction completed by " + details.payer.name.given_name
+                  // );
+                  dispatch(emptyCart());
+                  navigate(ROUTES.ORDERCONFIRM);
+                }}
+                onError={(error) => {
+                  console.log(error);
+                }}
+              />
             </div>
           </div>
         </div>

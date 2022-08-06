@@ -13,7 +13,7 @@ export default function Footer() {
                 focusable="false"
                 data-prefix="fas"
                 data-icon="cubes"
-                class="w-4 mr-3"
+                className="w-4 mr-3"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
